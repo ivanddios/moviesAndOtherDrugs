@@ -2,7 +2,7 @@
 
 _Google App Engine project to manage a movies and series thats any user can see_
 
-Can you visit [here](https://www.moviesandotherdrugs.com)
+Can you visit [here](https://moviesandotherdrugs.com)
 
 
 ## Construido con 🛠️
