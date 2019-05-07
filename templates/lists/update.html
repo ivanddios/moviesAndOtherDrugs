@@ -1,0 +1,38 @@
+{% extends "skeleton.html" %}
+{% block content %}
+
+ <script type="text/javascript" src="/templates/js/validates.js"></script>
+
+<div class="container">
+    <div class="row center-row">
+        <div class="col-lg-6 center-block">
+            <div id="titleView">
+                Do you want to change something?
+            </div>
+            <div class="col-lg-12 center-block-content">
+                <form action="/lists/update/{{list.key.id()}}" method="POST" onkeyup="validateList(this)">
+                    <div id="group-form">
+
+                        <div class="input-container">
+                            <span class="input-group-text fa fa-reorder"></span>
+                            <input type="text" name="name_list" id="edName" value="{{list.name_list}}" onkeyup="checkText(this)" required/>
+                            <label for="edName">What is the name list?</label>
+                        </div>
+
+                        <div class="input-container">
+                            <span class="input-group-text fa fa-reorder"></span>
+                            <input type="text" name="description_list" id="edDescription" value="{{list.description_list}}" onkeyup="checkText(this)" required/>
+                            <label for="edDescription">What is about it?</label>
+                        </div>
+                        <button id="saveButton" type="submit" name="submit" class="btn-dark" disabled>Save</button>
+                    </div>
+                </form>
+                <a href="/lists">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

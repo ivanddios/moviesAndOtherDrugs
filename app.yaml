@@ -1,0 +1,104 @@
+#application: movies-and-others-drugs
+#version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+  - url: /favicon\.ico
+    static_files: res/favicon.ico
+    upload: favicon\.ico
+
+  - url: /templates
+    static_dir: templates
+    application_readable: true
+
+  - url: /res
+    static_dir: res
+
+  - url: /movies/now_playing
+    script: handlers.moviesHandler.app
+    login: required
+
+  - url: /movies/popular
+    script: handlers.moviesHandler.app
+    login: required
+
+  - url: /movies/upcoming
+    script: handlers.moviesHandler.app
+    login: required
+
+  - url: /movies/search
+    script: handlers.moviesHandler.app
+    login: required
+
+  - url: /movies/([0-9]*)
+    script: handlers.moviesHandler.app
+
+  - url: /tv/on_air
+    script: handlers.tvshowsHandler.app
+    login: required
+
+  - url: /tv/popular
+    script: handlers.tvshowsHandler.app
+    login: required
+
+  - url: /tv/([0-9]*)
+    script: handlers.tvshowsHandler.app
+
+  - url: /lists
+    script: handlers.listsHandler.app
+    login: required
+
+  - url: /lists/([0-9]*)
+    script: handlers.listsHandler.app
+    login: required
+
+  - url: /lists/add
+    script: handlers.listsHandler.app
+    login: required
+
+  - url: /lists/update/([0-9]*)
+    script: handlers.listsHandler.app
+    login: required
+
+  - url: /lists/delete/([0-9]*)
+    script: handlers.listsHandler.app
+    login: required
+
+  - url: /reviews/add/([0-9]*)
+    script: handlers.reviewsHandler.app
+    login: required
+
+  - url: /reviews/update/([0-9]*)
+    script: handlers.reviewsHandler.app
+    login: required
+
+  - url: /reviews/delete/([0-9]*)
+    script: handlers.reviewsHandler.app
+    login: required
+
+  - url: /lists/addDefaultList/([0-9]*)
+    script: handlers.defaultListsHandler.app
+    login: required
+
+  - url: /lists/deleteDefaultList/([0-9]*)
+    script: handlers.defaultListsHandler.app
+    login: required
+
+  - url: /lists/movies/add/([0-9]*)
+    script: handlers.movielistHandler.app
+    login: required
+
+  - url: /lists/([0-9]*)/movies/([0-9]*)/delete
+    script: handlers.movielistHandler.app
+    login: required
+
+  - url: /
+    script: handlers.indexHandler.app
+
+libraries:
+  - name: webapp2
+    version: "2.5.2"
+  - name: jinja2
+    version: latest

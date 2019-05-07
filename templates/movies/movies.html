@@ -1,0 +1,58 @@
+{% extends "skeleton.html" %}
+{% block content %}
+
+<main role="main">
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div id="titleViewAlbum">
+                {% if not upcoming %}
+                {% if popular %}
+                Popular Movies
+                {% else %}
+                Now Playing in Theaters - USA
+                {% endif %}
+                {% else %}
+                Upcoming Movies
+                {% endif %}
+            </div>
+            <div class="row">
+                {% for movie in movies %}
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <a href="/movies/{{movie.id}}">
+                            <img class="card-img-top" srcset="https://image.tmdb.org/t/p/w300{{movie.poster_path}}" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text titleMovie">{{movie.title}}</p>
+                            {% if movie.overview %}
+                            <div class="parent">
+                                <div class="block-ellipsis">
+                                    {{movie.overview}}
+                                </div>
+                            </div>
+                               {% endif %}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary" href="/movies/{{movie.id}}">View</a>
+                                </div>
+                                <small class="text-muted">
+                                    {% for i in range(10) %}
+                                    {% if i+0.99 < movie.vote_average %}
+                                    <span class="fa fa-star starChecked"></span>
+                                    {% else %}
+                                    <span class="fa fa-star startNotchecked"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

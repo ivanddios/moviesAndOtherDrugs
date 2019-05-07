@@ -1,0 +1,55 @@
+{% extends "skeleton.html" %}
+{% block content %}
+
+<main role="main">
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div id="titleViewAlbum">
+                {% if popular %}
+                Popular TV Shows
+                {% else %}
+                Currently Airing TV Shows
+                {% endif %}
+            </div>
+            <div class="row">
+                {% for tvshow in tvshows %}
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <a href="/tv/{{tvshow.id}}">
+                        <img class="card-img-top" srcset="https://image.tmdb.org/t/p/w300{{tvshow.poster_path}}"
+                             alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text titleMovie">{{tvshow.name}}</p>
+                            {% if tvshow.overview %}
+                            <div class="parent">
+                                <div class="block-ellipsis">
+                                    {{tvshow.overview}}
+                                </div>
+                            </div>
+                               {% endif %}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary" href="/tv/{{tvshow.id}}">View</a>
+                                </div>
+                                <small class="text-muted">
+                                    {% for i in range(10) %}
+                                    {% if i+0.99 < tvshow.vote_average %}
+                                    <span class="fa fa-star starChecked"></span>
+                                    {% else %}
+                                    <span class="fa fa-star startNotchecked"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

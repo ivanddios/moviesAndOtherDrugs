@@ -1,0 +1,103 @@
+{% extends "skeleton.html" %}
+{% block content %}
+
+
+{% if not movies and not tvshows %}
+<div class="container">
+    <div class="row center-row">
+        <div class="col-lg-12 center-block">
+            <div id="titleView">
+                <h1>No movies or series in this list!</h1>
+            </div>
+            <a href="/lists">Back</a>
+        </div>
+    </div>
+</div>
+{% else %}
+<main role="main">
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div id="titleViewAlbum">
+                List {{list.name_list}} ~ {{list.description_list}}
+            </div>
+            <div class="row">
+                {% if movies %}
+                {% for movie in movies %}
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                       {% if movie.poster_path %}
+                        <img class="card-img-top" srcset="https://image.tmdb.org/t/p/w300{{movie.poster_path}}"
+                             alt="Card image cap">
+                        {% else %}
+                         <img class="card-img-top not-found"  src="/res/notfound.jpg"
+                             alt="Not found">
+                        {% endif %}
+                        <div class="card-body">
+                            <p class="card-text titleMovie">{{movie.title}}</p>
+                            <p class="card-text">{{movie.overview}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary"
+                                       href="/movies/{{movie.id}}">View</a>
+                                    <a class="btn btn-sm btn-outline-danger"
+                                       href="/lists/{{list.key.id()}}/movies/{{movie.id}}/delete?type=e7ca20073a313c02c8b427ee50e43717">Delete</a>
+                                </div>
+                                <small class="text-muted">
+                                    {% for i in range(10) %}
+                                    {% if i+0.99 < movie.vote_average %}
+                                    <span class="fa fa-star starChecked"></span>
+                                    {% else %}
+                                    <span class="fa fa-star startNotchecked"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% if tvshows %}
+                {% for tvshow in tvshows %}
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                         {% if tvshow.poster_path %}
+                        <img class="card-img-top" srcset="https://image.tmdb.org/t/p/w300{{tvshow.poster_path}}"
+                             alt="Card image cap">
+                        {% else %}
+                         <img class="card-img-top not-found" src="/res/notfound.jpg"
+                             alt="Not found">
+                        {% endif %}
+                        <div class="card-body">
+                            <p class="card-text titleMovie">{{tvshow.name}}</p>
+                            <p class="card-text">{{tvshow.overview}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary"
+                                       href="/tv/{{tvshow.id}}">View</a>
+                                    <a class="btn btn-sm btn-outline-danger"
+                                       href="/lists/{{list.key.id()}}/movies/{{tvshow.id}}/delete?type=f263d9a8b7cb4a9e573c18e5b9e15091">Delete</a>
+                                </div>
+                                <small class="text-muted">
+                                    {% for i in range(10) %}
+                                    {% if i+0.99 < tvshow.vote_average %}
+                                    <span class="fa fa-star starChecked"></span>
+                                    {% else %}
+                                    <span class="fa fa-star startNotchecked"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "skeleton.html" %}
+{% block content %}
+
+<main role="main">
+    {% if not movies and not tvshows %}
+    <img src="/res/doh404.jpg" width="100%">
+    {% else %}
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div id="titleViewAlbum">
+                Search results for: {{title}}
+            </div>
+            <div class="row">
+                {% if movies %}
+                {% for movie in movies %}
+                <div class="col-md-4">
+                    <div class="card mb-8 box-shadow">
+                        {% if movie.poster_path %}
+                        <a href="/movies/{{movie.id}}">
+                            <img class="card-img-top" srcset="https://image.tmdb.org/t/p/w300{{movie.poster_path}}"
+                                 alt="Card image cap">
+                        </a>
+                        {% else %}
+                        <p class="card-text titleMovieSearch">{{movie.title}}</p>
+                        <a href="/movies/{{movie.id}}">
+                            <img class="card-img-top not-found" src="/res/notfound.jpg" alt="Not found">
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% if tvshows %}
+                {% for tvshow in tvshows %}
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <a href="/tv/{{tvshow.id}}">
+                            {% if tvshow.poster_path %}
+                            <a href="/tv/{{tvshow.id}}">
+                                <img class="card-img-top" srcset="https://image.tmdb.org/t/p/w300{{tvshow.poster_path}}"
+                                     alt="Card image cap">
+                            </a>
+                            {% else %}
+                            <p class="card-text titleMovieSearch">{{tvshow.name}}</p>
+                            <a href="/tv/{{tvshow.id}}">
+                                <img class="card-img-top not-found" src="/res/notfound.jpg" alt="Not found">
+                            </a>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</main>
+
+
+{% endblock %}
