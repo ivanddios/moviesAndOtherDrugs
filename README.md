@@ -1,11 +1,13 @@
 # Movies and other Drugs
 
-_Acá va un párrafo que describa lo que es el proyecto_
+_Google App Engine project to manage a movies and series thats any user can see_
+
+Can you visit [here](https://www.moviesandotherdrugs.com)
 
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+* [Python](https://www.python.org/) 
+* [Jinja](http://jinja.pocoo.org/docs/2.10)
 
-* [Python](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Jinja](https://maven.apache.org/) - Manejador de dependencias
+
