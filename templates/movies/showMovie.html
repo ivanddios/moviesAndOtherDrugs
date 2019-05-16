@@ -1,126 +1,121 @@
 {% extends "skeleton.html" %}
 {% block content %}
 
-<script type="text/javascript" src="/templates/js/formatColor.js"></script>
+    <script type="text/javascript" src="/templates/js/formatColor.js"></script>
 
-<main id="main">
-    <section class="inner_content movie_content backdrop poster foot">
-        <div id="containerPpal" class="header">
-            <div id="custom_bg" class="custom_bg">
-                <div class="single_column">
-                    <section class="images inner">
-                        <div class="poster">
-                            <div class="image_content">
-                                <img id="poster"
-                                     crossOrigin="Anonymous"
-                                     src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}"
-                                     onload="background('{{movie.backdrop_path}}');">
+    <div id="containerPpal">
+        <div id="custom_bg">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div id="div-poster" class="image_content col-lg-4 col-md-12 col-sm-12 text-center">
+                        <img id="poster"
+                             crossOrigin="Anonymous"
+                             src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ movie.poster_path }}"
+                             onload="background('{{ movie.backdrop_path }}');"
+                             style="max-width: 100%">
+                    </div>
+                    <div id="dates_movie" class="col-lg-7 col-md-12 col-sm-12">
+                        <div class="container">
+                            <div class="row justify-content-start">
+                                <div class="col title">
+                                    <h2>{{ movie.title }}</h2>
+                                    <span class="date">({% print(movie.release_date[0:4]) %})</span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="header_poster_wrapper">
-                            <section class="header">
-                                <div class="title" dir="auto">
-                                    <span>
-                                        {% if movie.title %}
-                                        <h2 class="7">{{movie.title}}</h2>
-                                        <span class="release_date">({% print(movie.release_date[0:4]) %})</span>
-                                        {% else %}
-                                        <h2 class="7">{{movie.name}}</h2>
-                                        <span class="release_date">({% print(movie.first_air_date[0:4]) %})</span>
-                                        {% endif %}
-                                    </span>
+                            <div class="row justify-content-start">
+                                <div id="starts" class="col-lg-auto col-md-12 col-sm-12">
+                                    <ul class="stars auto actions">
+                                        <li class="chart">
+                                            <div class="back-start">
+                                                {% for i in range(10) %}
+                                                    {% if i+0.99 < (movie.vote_average) %}
+                                                        <span class="fa fa-star starChecked"></span>
+                                                    {% else %}
+                                                        <span class="fa fa-star startNotchecked"></span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul class="auto actions">
-                                    <li class="chart">
-                                        <div class="back-start">
-                                        {% for i in range(10) %}
-                                        {% if i+0.99 < (movie.vote_average) %}
-                                        <span class="fa fa-star starChecked"></span>
+                                <div id="row-rate" class="col-lg-6 col-md-12 col-sm-12">
+                                    <ul class="auto actions">
+                                        <li class="chart">
+                                            &nbsp;<h6>{{ movie.vote_average }}</h6>
+                                            <div class="text rate">Score</div>&nbsp;
+                                            &nbsp;<h6>{{ movie.vote_count }}</h6>
+                                            <div class="text rate">Ratings</div>
+                                        </li>
+
+                                        {% if is_favorite %}
+                                            <li class="lists">
+                                                <a title="Remove from favorites"
+                                                   href="/lists/deleteDefaultList/{{ movie.id }}?type=e7ca20073a313c02c8b427ee50e43717&list=d78986947356ddd37b43d57df289dee9">
+                                                    <i class="fav fa fa-heart" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
                                         {% else %}
-                                        <span class="fa fa-star startNotchecked"></span>
+                                            <li class="lists">
+                                                <a title="Add to favorites"
+                                                   href="/lists/addDefaultList/{{ movie.id }}?type=e7ca20073a313c02c8b427ee50e43717&list=d78986947356ddd37b43d57df289dee9">
+                                                    <i class="default fa fa-heart" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
                                         {% endif %}
-                                        {% endfor %}
-                                             </div>
-                                        &nbsp;<h6> {{movie.vote_average}} </h6>
-                                        <div class="text rate">Score</div>&nbsp;
-                                        &nbsp;<h6>{{movie.vote_count}}</h6>
-                                        <div class="text rate">Ratings</div>
 
-                                    </li>
-
-                                     {% if is_favorite %}
-                                    <li>
-                                        <a title="Remove from favorites"
-                                           href="/lists/deleteDefaultList/{{movie.id}}?type=e7ca20073a313c02c8b427ee50e43717&list=d78986947356ddd37b43d57df289dee9">
-                                            <i class="fav fa fa-heart" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    {% else %}
-                                    <li>
-                                        <a title="Add to favorites"
-                                           href="/lists/addDefaultList/{{movie.id}}?type=e7ca20073a313c02c8b427ee50e43717&list=d78986947356ddd37b43d57df289dee9">
-                                            <i class="fa fa-heart" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    {% endif %}
-
-                                      {% if is_pending %}
-                                    <li>
-                                        <a title="Remove from your watchlist"
-                                           href="/lists/deleteDefaultList/{{movie.id}}?type=e7ca20073a313c02c8b427ee50e43717&list=b2da1e4cf4d03918be2bdc56ae1d4ec2">
-                                            <i class="watchlist fa fa-bookmark" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    {% else %}
-                                    <li>
-                                        <a title="Add to your watchlist"
-                                           href="/lists/addDefaultList/{{movie.id}}?type=e7ca20073a313c02c8b427ee50e43717&list=b2da1e4cf4d03918be2bdc56ae1d4ec2">
-                                            <i class="fa fa-bookmark " aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    {% endif %}
-                                </ul>
-
-                                <div class="header_info">
-                                    <h3 dir="auto">Overview</h3>
-                                    <div class="overview" dir="auto">
-                                        <p>{{movie.overview}}</p>
-                                    </div>
+                                        {% if is_pending %}
+                                            <li class="lists">
+                                                <a title="Remove from your watchlist"
+                                                   href="/lists/deleteDefaultList/{{ movie.id }}?type=e7ca20073a313c02c8b427ee50e43717&list=b2da1e4cf4d03918be2bdc56ae1d4ec2">
+                                                    <i class="watchlist fa fa-bookmark" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="lists">
+                                                <a title="Add to your watchlist"
+                                                   href="/lists/addDefaultList/{{ movie.id }}?type=e7ca20073a313c02c8b427ee50e43717&list=b2da1e4cf4d03918be2bdc56ae1d4ec2">
+                                                    <i class="default fa fa-bookmark " aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
                                 </div>
+                            </div>
+                            <div class="row justify-content-start">
+                                <h3 dir="auto">Overview</h3>
+                                <p>{{ movie.overview }}</p>
+                            </div>
 
                             {% if movie.tagline %}
-                                <div class="header_info">
+                                <div class="row justify-content-start">
                                     <h3 dir="auto">Quote</h3>
-                                    <div class="overview" dir="auto">
-                                        <p>"{{movie.tagline}}"</p>
-                                    </div>
                                 </div>
-                            {%  endif %}
+                                <div class="row justify-content-start">
+                                    <p>"{{ movie.tagline }}"</p>
 
-                                <div class="header_info">
-                                    <h3 dir="auto">Genres</h3>
-                                     <div class="overview" dir="auto">
-                                        <p>
-                                        {% for genres in movie.genres %}
-                                            {{genres.name}}&nbsp;&nbsp;
-                                        {% endfor %}
-                                        </p>
-                                     </div>
                                 </div>
+                            {% endif %}
 
-                            </section>
+                            <div class="row justify-content-start">
+                                <h3 dir="auto">Genres</h3>
+                            </div>
+                            <div class="row justify-content-start">
+                                <p>
+                                    {% for genres in movie.genres %}
+                                        {{ genres.name }}&nbsp;&nbsp;
+                                    {% endfor %}
+                                </p>
+                            </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     {% block contentOption %}
     {% endblock %}
 
-    {% endblock %}
+{% endblock %}
 
 
-</main>

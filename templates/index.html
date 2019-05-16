@@ -1,33 +1,36 @@
 {% extends "skeleton.html" %}
 {% block content %}
 
- <video autoplay loop muted id="video-bg">
-     <source src="/res/nav.mp4" type="video/mp4">
- </video>
+    <img src="/res/nav.gif" style="width: 100%;">
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="widget">
-                <h5 class="widgetheading">About us</h5>
-                <p>{{info.AboutUs}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="widget">
+                    <h5 class="widgetheading">About us</h5>
+                    <p>{{ info.AboutUs }}</p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="widget">
-                <h5 class="widgetheading">Content</h5>
-                <p>{{info.Content}}</p>
+            <div class="col-lg-4">
+                <div class="widget">
+                    <h5 class="widgetheading">Content</h5>
+                    <p>{{ info.Content }}</p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="widget">
-                <h5 class="widgetheading">Contact</h5>
-                <br><a class="contact" target="_blank" href="https://www.google.es/maps/place/ESEI+-+Escola+Superior+de+Enxe%C3%B1er%C3%ADa+Inform%C3%A1tica/@42.3449233,-7.8554787,15z/data=!4m2!3m1!1s0x0:0xbb2380c0a6827554?sa=X&ved=0ahUKEwiKoO6ZjtLXAhUGXBQKHfQGBFYQ_BIIjQEwCw"><img src="/res/gps.png" class="iconContact">&nbsp;Visit us</a>
-                <br><a class="contact" href="mailto:{{info.Author}}?Subject=Contact%20from%20Movies%20and%20others%20drugs"><img src="/res/outlook.png" class="iconContact">&nbsp;Send Email</a>
-                <br><a class="contact" href="https://github.com/ivanddios" target="_blank"><img src="/res/github.png" class="iconContact">&nbsp;Visit GitHub</a>
+            <div class="col-lg-4">
+                <div class="widget">
+                    <h5 class="widgetheading">Contact</h5>
+                    <br><a class="contact" target="_blank"
+                           href="https://www.google.es/maps/place/ESEI+-+Escola+Superior+de+Enxe%C3%B1er%C3%ADa+Inform%C3%A1tica/@42.3449233,-7.8554787,15z/data=!4m2!3m1!1s0x0:0xbb2380c0a6827554?sa=X&ved=0ahUKEwiKoO6ZjtLXAhUGXBQKHfQGBFYQ_BIIjQEwCw"><img
+                        src="/res/gps.png" class="iconContact">&nbsp;Visit us</a>
+                    <br><a class="contact"
+                           href="mailto:{{ info.Author }}?Subject=Contact%20from%20Movies%20and%20others%20drugs"><img
+                        src="/res/outlook.png" class="iconContact">&nbsp;Send Email</a>
+                    <br><a class="contact" href="https://github.com/ivanddios" target="_blank"><img
+                        src="/res/github.png" class="iconContact">&nbsp;Visit GitHub</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

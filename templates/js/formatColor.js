@@ -5,6 +5,7 @@ function background(poster_src) {
     containerPpal.style.backgroundSize = "cover";
     containerPpal.style.backgroundRepeat = "no-repeat";
     containerPpal.style.backgroundImage = "url(" + urlPoster + ")";
+     containerPpal.style.borderBottom = "2px solid";
 
     var rgb = getAverageRGB(document.getElementById('poster'));
     var divCustom = document.getElementById("custom_bg");
