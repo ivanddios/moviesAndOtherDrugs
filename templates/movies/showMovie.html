@@ -89,12 +89,14 @@
                                     </div>
                                 </div>
 
+                            {% if movie.tagline %}
                                 <div class="header_info">
                                     <h3 dir="auto">Quote</h3>
                                     <div class="overview" dir="auto">
                                         <p>"{{movie.tagline}}"</p>
                                     </div>
                                 </div>
+                            {%  endif %}
 
                                 <div class="header_info">
                                     <h3 dir="auto">Genres</h3>
