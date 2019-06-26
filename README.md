@@ -1,6 +1,6 @@
 # Movies and other Drugs
 
-_Google App Engine project to manage a movies and series thats any user can see_
+_Google App Engine project to manage the multimedia content that you see_
 
 Can you visit [here](https://moviesandotherdrugs.appspot.com/)
 
